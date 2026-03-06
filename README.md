@@ -1,51 +1,183 @@
 # Mugdho DXN E-commerce Website
 
-A complete e-commerce platform for selling DXN products in Bangladesh with integrated payment gateways.
+একটি সম্পূর্ণ Laravel-based ই-কমার্স ওয়েবসাইট DXN পণ্য বিক্রয়ের জন্য বাংলাদেশে।
 
 ## Features
 
-- Complete product catalog with DXN products
-- User authentication and registration
-- Shopping cart functionality
-- Order management system
-- Admin panel for product and order management
-- Payment integration: bKash, Nagad, and Bank Cards (SSLCOMMERZ)
-- Responsive design
-- Product search and filtering
-- Order tracking
+- ✅ 50+ Real DXN Products with authentic Bangladesh pricing
+- ✅ Shopping Cart System
+- ✅ User Authentication (Register/Login)
+- ✅ Admin Panel for Product & Order Management
+- ✅ Payment Gateways: bKash, Nagad, SSLCOMMERZ (Bank Cards)
+- ✅ Order Management System
+- ✅ Responsive Design
+- ✅ Product Categories
+- ✅ Product Search & Filter
+
+## Tech Stack
+
+- Laravel 10
+- PHP 8.2
+- MySQL Database
+- Bootstrap 5
+- Blade Templates
 
 ## Installation
 
-1. Clone the repository
-2. Run `composer install`
-3. Copy `.env.example` to `.env` and configure your database
-4. Run `php artisan key:generate`
-5. Run `php artisan migrate --seed`
-6. Run `php artisan storage:link`
-7. Start the server: `php artisan serve`
+### Local Setup
 
-## Default Admin Credentials
+1. Clone the repository
+```bash
+git clone https://github.com/YOUR-USERNAME/mugdho-dxn-ecommerce.git
+cd mugdho-dxn-ecommerce
+```
+
+2. Install dependencies
+```bash
+composer install
+```
+
+3. Create .env file
+```bash
+cp .env.example .env
+```
+
+4. Generate application key
+```bash
+php artisan key:generate
+```
+
+5. Configure database in .env file
+```env
+DB_DATABASE=mugdho_dxn
+DB_USERNAME=root
+DB_PASSWORD=your_password
+```
+
+6. Run migrations and seeders
+```bash
+php artisan migrate --seed
+```
+
+7. Create storage link
+```bash
+php artisan storage:link
+```
+
+8. Start development server
+```bash
+php artisan serve
+```
+
+Visit: http://localhost:8000
+
+### Default Admin Login
 
 - Email: admin@mugdhodxn.com
 - Password: admin123
 
+## Railway.app Deployment
+
+See [RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md) for complete deployment guide.
+
 ## Payment Gateway Setup
 
+See [PAYMENT_SETUP.md](PAYMENT_SETUP.md) for payment gateway configuration.
+
+## Product List
+
+See [PRODUCT_LIST.md](PRODUCT_LIST.md) for complete DXN product list.
+
+## Project Structure
+
+```
+├── app/
+│   ├── Http/Controllers/
+│   │   ├── Admin/          # Admin panel controllers
+│   │   ├── CartController.php
+│   │   ├── CheckoutController.php
+│   │   ├── PaymentController.php
+│   │   └── ProductController.php
+│   ├── Models/
+│   │   ├── Category.php
+│   │   ├── Order.php
+│   │   ├── OrderItem.php
+│   │   ├── Product.php
+│   │   └── User.php
+│   └── Middleware/
+│       └── AdminMiddleware.php
+├── database/
+│   ├── migrations/
+│   └── seeders/
+│       ├── CategorySeeder.php
+│       ├── ProductSeeder.php
+│       └── DatabaseSeeder.php
+├── resources/views/
+│   ├── layouts/
+│   ├── products/
+│   ├── cart/
+│   ├── checkout/
+│   └── orders/
+└── routes/
+    └── web.php
+```
+
+## Database Schema
+
+### Users Table
+- id, name, email, password, is_admin, timestamps
+
+### Categories Table
+- id, name, slug, description, timestamps
+
+### Products Table
+- id, category_id, name, slug, sku, description, price, stock, image, timestamps
+
+### Orders Table
+- id, user_id, order_number, total_amount, payment_method, payment_status, status, timestamps
+
+### Order Items Table
+- id, order_id, product_id, quantity, price, timestamps
+
+## Payment Methods
+
 ### bKash
-1. Register for bKash merchant account
-2. Get API credentials from bKash
-3. Update `.env` file with credentials
+- Mobile wallet payment
+- Sandbox & Production modes
 
 ### Nagad
-1. Register for Nagad merchant account
-2. Get API credentials from Nagad
-3. Update `.env` file with credentials
+- Mobile wallet payment
+- Sandbox & Production modes
 
-### SSLCOMMERZ (Bank Cards)
-1. Register at SSLCOMMERZ
-2. Get Store ID and Password
-3. Update `.env` file with credentials
+### SSLCOMMERZ
+- Bank card payments (Visa, MasterCard, etc.)
+- Sandbox & Production modes
+
+## Admin Panel
+
+Access: `/admin`
+
+Features:
+- Dashboard with statistics
+- Product Management (Add/Edit/Delete)
+- Category Management
+- Order Management
+- Order Status Updates
+
+## Contributing
+
+This is a private project for Mugdho DXN.
 
 ## License
 
-MIT License
+Proprietary - All rights reserved
+
+## Support
+
+For support, email: support@mugdhodxn.com
+
+## Credits
+
+- DXN Bangladesh Official Product List
+- Laravel Framework
+- Bootstrap 5
